@@ -1,5 +1,6 @@
 package pathrer.com.kisanmitra;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,11 +10,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class Fertilizer extends AppCompatActivity {
 
@@ -55,6 +58,7 @@ public class Fertilizer extends AppCompatActivity {
             protected void populateViewHolder(BlogViewHolder viewHolder, Blog model, int position) {
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
+                viewHolder.setImage(getApplicationContext(),model.getImage());
             }
         } ;
         recyclerView.setAdapter(firebaseRecyclerAdapter);
@@ -77,6 +81,11 @@ public class Fertilizer extends AppCompatActivity {
         public  void setDesc(String title){
             TextView postdesc= (TextView) mView.findViewById(R.id.posttext);
             postdesc.setText(title);
+        }
+
+        public void setImage(Context ctx,String image){
+            ImageView postimg = (ImageView) mView.findViewById(R.id.postimage);
+            Picasso.with(ctx).load(image).into(postimg);
         }
 
     }
