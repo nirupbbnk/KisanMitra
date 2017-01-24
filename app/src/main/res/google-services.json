@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "974256658866",
+    "firebase_url": "https://kisanmitra-4052f.firebaseio.com",
+    "project_id": "kisanmitra-4052f",
+    "storage_bucket": "kisanmitra-4052f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974256658866:android:cedb9b4d8eabf70f",
+        "android_client_info": {
+          "package_name": "pathrer.com.kisanmitra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974256658866-0csqhrmb6qdevjhqgvrulcel0bc1oqpj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pathrer.com.kisanmitra",
+            "certificate_hash": "E81C50BE949ECD302682084846A236F6BB36C3D3"
+          }
+        },
+        {
+          "client_id": "974256658866-d9q5kr1c1vg5get1eqbsj1kg18krpllb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnFk641tsPYEl50GR5I4kh4w6WgTHP5W4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974256658866-d9q5kr1c1vg5get1eqbsj1kg18krpllb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
