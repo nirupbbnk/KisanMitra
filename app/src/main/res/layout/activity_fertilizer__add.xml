@@ -33,7 +33,8 @@
         android:id="@+id/descField"
         android:layout_below="@+id/titleField"
         android:layout_centerHorizontal="true"
-        android:hint="Place" />
+        android:hint="Price" />
+
 
     <Button
         android:layout_width="match_parent"

@@ -2,6 +2,7 @@ package pathrer.com.kisanmitra;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SelectionActivity extends AppCompatActivity {
 
-    protected Button ferti;
-    private Button logout;
     public FirebaseAuth mauth;
     public FirebaseAuth.AuthStateListener mauthlistner;
     private DrawerLayout mdrawerLayout;
@@ -32,13 +31,9 @@ public class SelectionActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ferti = (Button) findViewById(R.id.fertilizer);
-        ferti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SelectionActivity.this, Fertilizer.class));
-            }
-        });
+
+
+
 
         mauth = FirebaseAuth.getInstance();
         mauthlistner = new FirebaseAuth.AuthStateListener() {
@@ -46,17 +41,16 @@ public class SelectionActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() == null){
                     startActivity(new Intent(SelectionActivity.this, MainActivity.class));
+                    finish();
                 }
             }
         };
+        SelectFragment fragment = new SelectFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment,"fragment");
+        fragmentTransaction.commit();
 
-        logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mauth.signOut();
-            }
-        });
+
     }
 
     @Override

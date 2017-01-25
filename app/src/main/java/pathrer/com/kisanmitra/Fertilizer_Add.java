@@ -24,6 +24,8 @@ public class Fertilizer_Add extends AppCompatActivity {
     private StorageReference mStorage;
     private EditText mtitle;
     private EditText mpost;
+    private EditText mprice;
+    private EditText mphmo;
     private Button msubitb;
     private Uri imageuri = null;
 
@@ -34,11 +36,13 @@ public class Fertilizer_Add extends AppCompatActivity {
         setContentView(R.layout.activity_fertilizer__add);
 
         mStorage = FirebaseStorage.getInstance().getReference();
+       // mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
 
         mselectimage = (ImageButton) findViewById(R.id.imageSelect);
         mtitle = (EditText) findViewById(R.id.titleField);
         mpost = (EditText) findViewById(R.id.descField);
+
         msubitb =(Button) findViewById(R.id.submit);
 
 
@@ -58,6 +62,7 @@ public class Fertilizer_Add extends AppCompatActivity {
                 final String title_val = mtitle.getText().toString();
                 final String desc_val = mpost.getText().toString();
 
+
                 StorageReference filepath = mStorage.child("BlogImages").child(imageuri.getLastPathSegment());
                 filepath.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -67,6 +72,8 @@ public class Fertilizer_Add extends AppCompatActivity {
 
                         newPost.child("title").setValue(title_val);
                         newPost.child("desc").setValue(desc_val);
+
+
                         newPost.child("image").setValue(downloaduri.toString());
 
 

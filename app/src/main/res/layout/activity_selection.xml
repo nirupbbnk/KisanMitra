@@ -6,52 +6,11 @@
     android:id="@+id/drawerlayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="pathrer.com.kisanmitra.SelectionActivity">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.design.widget.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Soil Test"
-        android:id="@+id/soiltest"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crop"
-        android:id="@+id/crop"
-        android:layout_below="@+id/soiltest"
-        android:layout_alignLeft="@+id/soiltest"
-        android:layout_alignStart="@+id/soiltest"
-        android:layout_marginTop="52dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fertilizer"
-        android:id="@+id/fertilizer"
-        android:layout_below="@+id/crop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:id="@+id/logout"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/fertilizer"
-        android:layout_toEndOf="@+id/fertilizer" />
-
-</RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame"></FrameLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
