@@ -69,7 +69,10 @@ public class Fertilizer_Add extends AppCompatActivity {
                         newPost.child("desc").setValue(desc_val);
                         newPost.child("image").setValue(downloaduri.toString());
 
+
                         Toast.makeText(Fertilizer_Add.this,"Upload done",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Fertilizer_Add.this, Fertilizer.class));
+
 
                     }
                 });

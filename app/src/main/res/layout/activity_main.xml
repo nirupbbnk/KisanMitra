@@ -9,17 +9,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pathrer.com.kisanmitra.MainActivity">
 
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/googlebutton">
 
+    </com.google.android.gms.common.SignInButton>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberPassword"
         android:ems="10"
         android:id="@+id/pin"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="114dp"
-        android:hint="Enter PIN" />
+        android:hint="Enter PIN"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
