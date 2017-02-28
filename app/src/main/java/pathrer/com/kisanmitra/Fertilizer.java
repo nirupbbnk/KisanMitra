@@ -1,7 +1,10 @@
 package pathrer.com.kisanmitra;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,7 +32,7 @@ public class Fertilizer extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mdatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
+        mdatabase = FirebaseDatabase.getInstance().getReference().child("Fertilizer1");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         recyclerView.setHasFixedSize(true);
@@ -58,7 +61,10 @@ public class Fertilizer extends AppCompatActivity {
             protected void populateViewHolder(BlogViewHolder viewHolder, Blog model, int position) {
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
+                viewHolder.setPhno(model.getPhno());
+                viewHolder.setPlace(model.getPlace());
                 viewHolder.setImage(getApplicationContext(),model.getImage());
+                viewHolder.setEmail(model.getUsrid());
             }
         } ;
         recyclerView.setAdapter(firebaseRecyclerAdapter);
@@ -68,9 +74,51 @@ public class Fertilizer extends AppCompatActivity {
     public static class BlogViewHolder extends RecyclerView.ViewHolder{
 
         View mView;
+        public String email;
+        Context context;
+        final CharSequence[] items = {" Phone "};
+        String phno;
         public BlogViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            context = itemView.getContext();
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Book through..");
+
+                    builder.setCancelable(false);
+                    builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+
+
+                            switch (item) {
+                                case 0:
+                                    Intent jack = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phno, null));
+                                    context.startActivity(jack);
+                                    break;
+                                case 1:
+                                    // Your code when 2nd  option seletced
+
+
+                                    break;
+
+
+                            }
+                            dialog.dismiss();
+                        }
+                    }).setNegativeButton("Cancel", null).show();
+                    AlertDialog levelDialog = builder.create();
+                    levelDialog.show();
+
+                }
+            });
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
 
         public  void setTitle(String title){
@@ -88,5 +136,14 @@ public class Fertilizer extends AppCompatActivity {
             Picasso.with(ctx).load(image).into(postimg);
         }
 
+        public void setPhno(String title) {
+            phno = title;
+            TextView postdesc= (TextView) mView.findViewById(R.id.postphoneno);
+            postdesc.setText(title);
+        }
+        public void setPlace(String title) {
+            TextView postdesc= (TextView) mView.findViewById(R.id.postplace);
+            postdesc.setText(title);
+        }
     }
 }

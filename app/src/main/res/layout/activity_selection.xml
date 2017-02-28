@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawerlayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/b"
     tools:context="pathrer.com.kisanmitra.SelectionActivity">
 
     <FrameLayout

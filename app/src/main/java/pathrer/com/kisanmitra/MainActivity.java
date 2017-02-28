@@ -1,6 +1,7 @@
 package pathrer.com.kisanmitra;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,11 +34,14 @@ public class MainActivity extends AppCompatActivity {
     private GoogleApiClient googleApiClient;
     private FirebaseAuth mAuth;
     private static final String TAG = "MainActivity";
+    protected ProgressDialog progressDialog;
+
     private FirebaseAuth.AuthStateListener mAuthListner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressDialog = new ProgressDialog(getApplicationContext());
 
         mAuth = FirebaseAuth.getInstance() ;
         mAuthListner = new FirebaseAuth.AuthStateListener() {
@@ -69,16 +73,17 @@ public class MainActivity extends AppCompatActivity {
         goolebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               //progressDialog.show();
                 signIn();
             }
         });
-        login=(Button)findViewById(R.id.login);
+/*        login=(Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SelectionActivity.class));
             }
-        });
+        });*/
 
     }
 
@@ -102,10 +107,13 @@ public class MainActivity extends AppCompatActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
+
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
                 // Google Sign In failed, update UI appropriately
+                Toast.makeText(MainActivity.this, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show();
                 // ...
             }
         }
@@ -118,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                        //progressDialog.dismiss();
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the

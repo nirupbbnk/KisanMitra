@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -23,7 +24,7 @@ public class Fertilizer_Add extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private StorageReference mStorage;
     private EditText mtitle;
-    private EditText mpost;
+    private EditText mplace;
     private EditText mprice;
     private EditText mphmo;
     private Button msubitb;
@@ -37,11 +38,13 @@ public class Fertilizer_Add extends AppCompatActivity {
 
         mStorage = FirebaseStorage.getInstance().getReference();
        // mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Fertilizer1");
 
         mselectimage = (ImageButton) findViewById(R.id.imageSelect);
         mtitle = (EditText) findViewById(R.id.titleField);
-        mpost = (EditText) findViewById(R.id.descField);
+        mprice = (EditText) findViewById(R.id.descField);
+        mplace = (EditText)findViewById(R.id.FertPlace);
+        mphmo = (EditText) findViewById(R.id.fertPHn);
 
         msubitb =(Button) findViewById(R.id.submit);
 
@@ -60,7 +63,9 @@ public class Fertilizer_Add extends AppCompatActivity {
             public void onClick(View v) {
 
                 final String title_val = mtitle.getText().toString();
-                final String desc_val = mpost.getText().toString();
+                final String desc_val = mprice.getText().toString();
+                final String place_val = mplace.getText().toString();
+                final String pho_val = mphmo.getText().toString();
 
 
                 StorageReference filepath = mStorage.child("BlogImages").child(imageuri.getLastPathSegment());
@@ -72,8 +77,9 @@ public class Fertilizer_Add extends AppCompatActivity {
 
                         newPost.child("title").setValue(title_val);
                         newPost.child("desc").setValue(desc_val);
-
-
+                        newPost.child("phno").setValue(place_val);
+                        newPost.child("place").setValue(pho_val);
+                        newPost.child("usrid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                         newPost.child("image").setValue(downloaduri.toString());
 
 

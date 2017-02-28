@@ -73,6 +73,17 @@ public class SelectionActivity extends AppCompatActivity {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
+        if(item.getItemId() == R.id.account){
+           /* MyPostFragment mp = new MyPostFragment();
+*//*            Bundle args = new Bundle();
+            args.putString("Vuc",auth);
+            mp.setArguments(args);*//*
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,mp,"fragment");
+            fragmentTransaction.commit();*/
+            //String auth = mauth.getCurrentUser().getUid().toString();
+
+        }
         return super.onOptionsItemSelected(item);
 
 
