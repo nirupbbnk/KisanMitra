@@ -1,0 +1,158 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@drawable/b"
+    tools:context="pathrer.com.kisanmitra.SelectFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Soil Test"
+        android:id="@+id/soiltest"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crop"
+        android:id="@+id/crop"
+        android:layout_below="@+id/soiltest"
+        android:layout_alignLeft="@+id/soiltest"
+        android:layout_alignStart="@+id/soiltest"
+        android:layout_marginTop="52dp"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fertilizer"
+        android:id="@+id/fertilizer"
+        android:layout_below="@+id/crop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <Button
+        android:text="MyFrt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fertilizer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/myfertpost"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+
+</RelativeLayout>
+
+
+    <!--       <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="190.0dp"
+               android:minHeight="190.0dip"
+               android:layout_weight="1.0"
+               android:id="@+id/soil">
+               <ImageView
+                   android:id="@+id/image"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:src="@color/colorPrimary"
+                   android:scaleType="fitXY"
+                   />
+
+               <TextView
+                   android:textSize="35.0sp"
+                   android:textColor="@android:color/white"
+                   android:id="@+id/list_item_google_cards_travel_category_name"
+                   android:background="@android:color/transparent"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="35.0dip"
+                   android:layout_marginBottom="24.0dip"
+                   android:text="Soil"
+                   android:paddingLeft="250dp"
+                   android:paddingTop="60dp"
+                   android:layout_gravity="center"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentBottom="true"
+                   />
+
+           </android.support.v7.widget.CardView>
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="190.0dp"
+               android:minHeight="190.0dip"
+               android:layout_weight="1.0"
+               android:id="@+id/crop">
+               <ImageView
+                   android:id="@+id/cr_im"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:src="@color/colorPrimary"
+                   android:scaleType="fitXY"
+                   />
+
+               <TextView
+                   android:textSize="35.0sp"
+                   android:textColor="@android:color/white"
+                   android:id="@+id/cr_txt"
+                   android:background="@android:color/transparent"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="35.0dip"
+                   android:layout_marginBottom="24.0dip"
+                   android:text="crop"
+                   android:paddingLeft="250dp"
+                   android:paddingTop="60dp"
+                   android:layout_gravity="center"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentBottom="true"
+                   />
+
+           </android.support.v7.widget.CardView>
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="190.0dp"
+               android:minHeight="190.0dip"
+               android:layout_weight="1.0"
+               android:id="@+id/fert">
+               <ImageView
+                   android:id="@+id/f_image"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:src="@color/colorPrimary"
+                   android:scaleType="fitXY"
+                   />
+
+               <TextView
+                   android:textSize="35.0sp"
+                   android:textColor="@android:color/white"
+                   android:id="@+id/f_txt"
+                   android:background="@android:color/transparent"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="35.0dip"
+                   android:layout_marginBottom="24.0dip"
+                   android:text="Fertilizer"
+                   android:paddingLeft="250dp"
+                   android:paddingTop="60dp"
+                   android:layout_gravity="center"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentBottom="true"
+                   />
+
+           </android.support.v7.widget.CardView>-->
+
+
+
+
+
+</FrameLayout>
