@@ -1,7 +1,9 @@
 package pathrer.com.kisanmitra;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -18,6 +20,8 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+
+
         new Handler().postDelayed(new Runnable() {
 
 			/*
@@ -29,9 +33,9 @@ public class SplashScreen extends Activity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(i);
 
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(intent);
                 // close this activity
                 finish();
             }

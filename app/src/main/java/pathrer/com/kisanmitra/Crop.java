@@ -4,7 +4,7 @@ package pathrer.com.kisanmitra;
  * Created by Pathrer on 25-01-2017.
  */
 public class Crop {
-   private String cropname,price,place,imageurl,phno;
+   private String cropname,price,place,imageurl,phno,cuid;
 
     public Crop() {
     }
@@ -55,5 +55,13 @@ public class Crop {
 
     public void setPhno(String phno) {
         this.phno = phno;
+    }
+
+    public String getCuid() {
+        return cuid;
+    }
+
+    public void setCuid(String cuid) {
+        this.cuid = cuid;
     }
 }

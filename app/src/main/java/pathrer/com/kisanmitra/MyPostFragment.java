@@ -73,7 +73,11 @@ public class MyPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         //mypo = savedInstanceState.getString("Vuc");
+        mdatabase = FirebaseDatabase.getInstance().getReference().child("Fertilizer1");
+        String usr = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        query = mdatabase.orderByChild("usrid").equalTo(usr);
         View rootView = inflater.inflate(R.layout.fragment_my_post, container, false);
         mRecycler = (RecyclerView) rootView.findViewById(R.id.Myfert_recycle);
         mRecycler.setHasFixedSize(true);
@@ -83,7 +87,7 @@ public class MyPostFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mdatabase = FirebaseDatabase.getInstance().getReference().child("Fertilizer1");
+
         //mypo = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         //Toast.makeText(getContext(),mypo,Toast.LENGTH_LONG).show();
        // query = mdatabase.child("Fertilizer1").child("usrid").equalTo(mypo);
@@ -99,24 +103,26 @@ public class MyPostFragment extends Fragment {
                 Blog.class,
                 R.layout.row,
                 MyFerViewholder.class,
-                mdatabase
+                query
         ) {
             @Override
             protected void populateViewHolder(MyFerViewholder viewHolder, Blog model, int position) {
                 mypo = model.getUsrid();
-                if(mypo.equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())){
-                    viewHolder.setTitle(model.getTitle());
-                    viewHolder.setDesc(model.getDesc());
-                    viewHolder.setPhno(model.getPhno());
-                    viewHolder.setPlace(model.getPlace());
-                    viewHolder.setImage(getContext(),model.getImage());
+                viewHolder.setTitle(model.getTitle());
+                viewHolder.setDesc(model.getDesc());
+                viewHolder.setPhno(model.getPhno());
+                viewHolder.setPlace(model.getPlace());
+                viewHolder.setImage(getContext(),model.getImage());
+               /* if(mypo.equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())){
+
                 } else{
                     Toast.makeText(getContext(),"u Don't have any posts",Toast.LENGTH_LONG).show();
-                }
+                }*/
 
                 //viewHolder.setEmail(model.getUsrid());
             }
         };
+
         mRecycler.setAdapter(firebaseRecyclerAdapterMyFert);
     }
 

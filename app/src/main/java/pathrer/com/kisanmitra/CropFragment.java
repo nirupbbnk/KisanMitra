@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -84,12 +85,27 @@ public class CropFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(CropVIewHolder viewHolder, Crop model, int position) {
+                final String post_key = getRef(position).getKey().toString();
                 viewHolder.setCropName(model.getCropname());
                 Log.d("CropName",model.getCropname() + "\niurl: " + model.getImageurl());
                 viewHolder.setPhn(model.getPhno());
                 viewHolder.setPlace(model.getPlace());
                 viewHolder.setPrice(model.getPrice());
                 viewHolder.setImage(getActivity().getApplicationContext(),model.getImageurl());
+                viewHolder.mview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment mp = new DetailFragment();
+                        Bundle args = new Bundle();
+                        args.putString("fragment","CropsP");
+                        args.putString("Vuc",post_key);
+                        mp.setArguments(args);
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.frame,mp,"fragment");
+                        fragmentTransaction.commit();
+                        Toast.makeText(getContext(),post_key,Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
         };
@@ -101,44 +117,13 @@ public class CropFragment extends Fragment {
         Context context;
         final CharSequence[] items = {" Phone "};
         String phno;
+        String key;
         public CropVIewHolder(View itemView) {
 
             super(itemView);
             mview = itemView;
             context = itemView.getContext();
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Show intrest through..");
-
-                    builder.setCancelable(false);
-                    builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int item) {
-
-
-                            switch (item) {
-                                case 0:
-                                    Intent jack = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phno, null));
-                                    context.startActivity(jack);
-                                    break;
-                                case 1:
-                                    // Your code when 2nd  option seletced
-
-
-                                    break;
-
-
-                            }
-                            dialog.dismiss();
-                        }
-                    }).setNegativeButton("Cancel", null).show();
-                    AlertDialog levelDialog = builder.create();
-                    levelDialog.show();
-
-                }
-            });
         }
         public void setCropName(String name){
             TextView na = (TextView)mview.findViewById(R.id.postcropname);
@@ -160,6 +145,9 @@ public class CropFragment extends Fragment {
         public void setImage(Context ctx, String image){
             ImageView postimg = (ImageView) mview.findViewById(R.id.postcropimage);
             Picasso.with(ctx).load(image).into(postimg);
+        }
+        public void setUID(String uid){
+
         }
     }
 

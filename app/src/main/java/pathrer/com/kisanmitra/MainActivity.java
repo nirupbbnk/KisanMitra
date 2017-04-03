@@ -2,8 +2,14 @@ package pathrer.com.kisanmitra;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +32,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     protected Button login;
@@ -34,21 +48,71 @@ public class MainActivity extends AppCompatActivity {
     private GoogleApiClient googleApiClient;
     private FirebaseAuth mAuth;
     private static final String TAG = "MainActivity";
-    protected ProgressDialog progressDialog;
-
+    protected ProgressDialog pdia;
+    private AVLoadingIndicatorView avi;
+    CoordinatorLayout rootLayout;
+    Button mySnackbar;
+    DatabaseReference mDatabase;
     private FirebaseAuth.AuthStateListener mAuthListner;
+    String uid,dist,ph;
+    Query query;
+    private  SharedPreferences.Editor editor;
+    boolean  firstTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressDialog = new ProgressDialog(getApplicationContext());
+       // progressDialog = new ProgressDialog(getApplicationContext());
+        SharedPreferences  sharedPreferences = getSharedPreferences("ShaPreferences", Context.MODE_PRIVATE);
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+         uid = Constans.uid;
+
+         dist = Constans.dist;
+
+         ph = Constans.phone;
+        editor=sharedPreferences.edit();
+        firstTime =sharedPreferences.getBoolean("first", true);
+       // mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("auid");
+        //query= mDatabase.orderByKey().equalTo(uid);
+       // DatabaseReference db = query.getRef();
+
+        rootLayout = (CoordinatorLayout) findViewById(R.id.main);
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // fetch data
+        } else {
+            Snackbar snackbar1 = Snackbar
+                    .make(findViewById(R.id.main), "No internet connection!", Snackbar.LENGTH_LONG)
+                    .setAction("RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                        }
+                    });
+            snackbar1.show();
+        }
 
         mAuth = FirebaseAuth.getInstance() ;
         mAuthListner = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
-                    startActivity(new Intent(MainActivity.this, SelectionActivity.class));
+                    if(firstTime) {
+
+                        Intent intent = new Intent(MainActivity.this, Register.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        startActivity(new Intent(MainActivity.this, SelectionActivity.class));
+                        finish();
+                    }
+
+                    return;
                 }
             }
         };
@@ -73,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
         goolebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //progressDialog.show();
+              // progressDialog.show();
+
                 signIn();
             }
         });
@@ -86,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
     }
+
 
     @Override
     protected void onStart() {
@@ -101,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+       // MainActivity.this.pdia = ProgressDialog.show(MainActivity.this, null, "Signing in.... ");
+
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -108,9 +176,11 @@ public class MainActivity extends AppCompatActivity {
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
 
+
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
+
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(MainActivity.this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show();
@@ -127,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
                         //progressDialog.dismiss();
-
+                        //writeNewPost(uid,dist,ph,FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.

@@ -8,10 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,10 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+
 public class Fertilizer extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DatabaseReference mdatabase;
+    MaterialTapTargetPrompt mFabPrompt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +44,32 @@ public class Fertilizer extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mFabPrompt = new MaterialTapTargetPrompt.Builder(Fertilizer.this)
+                .setTarget(findViewById(R.id.fab))
+                .setPrimaryText("Fertilizer add option")
+                .setSecondaryText("Tap to add your fertilizer and start selling online")
+                .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
+                {
+                    @Override
+                    public void onHidePrompt(MotionEvent event, boolean tappedTarget)
+                    {
+                        mFabPrompt=null;
+                        //Do something such as storing a value so that this prompt is never shown again
+                    }
+
+                    @Override
+                    public void onHidePromptComplete()
+                    {
+
+                    }
+                })
+                .show();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(Fertilizer.this, Fertilizer_Add.class));
             }
         });
@@ -59,12 +87,30 @@ public class Fertilizer extends AppCompatActivity {
 
             @Override
             protected void populateViewHolder(BlogViewHolder viewHolder, Blog model, int position) {
+                final String pos = getRef(position).getKey().toString();
+
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setPhno(model.getPhno());
                 viewHolder.setPlace(model.getPlace());
                 viewHolder.setImage(getApplicationContext(),model.getImage());
                 viewHolder.setEmail(model.getUsrid());
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /*Fragment mp = new DetailFragment();
+                        Bundle args = new Bundle();
+                        args.putString("fragment","CropsP");
+                        args.putString("Vuc",pos);
+                        mp.setArguments(args);
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.frame,mp,"fragment");
+                        fragmentTransaction.commit();*/
+
+
+                    }
+
+                });
             }
         } ;
         recyclerView.setAdapter(firebaseRecyclerAdapter);
@@ -83,38 +129,7 @@ public class Fertilizer extends AppCompatActivity {
             mView = itemView;
             context = itemView.getContext();
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Book through..");
 
-                    builder.setCancelable(false);
-                    builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int item) {
-
-
-                            switch (item) {
-                                case 0:
-                                    Intent jack = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phno, null));
-                                    context.startActivity(jack);
-                                    break;
-                                case 1:
-                                    // Your code when 2nd  option seletced
-
-
-                                    break;
-
-
-                            }
-                            dialog.dismiss();
-                        }
-                    }).setNegativeButton("Cancel", null).show();
-                    AlertDialog levelDialog = builder.create();
-                    levelDialog.show();
-
-                }
-            });
         }
 
         public void setEmail(String email) {

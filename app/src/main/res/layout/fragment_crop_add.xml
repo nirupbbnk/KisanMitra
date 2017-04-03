@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+        android:background="@drawable/side_nav_bar"
     tools:context="pathrer.com.kisanmitra.CropAddFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -25,7 +25,7 @@
             android:id="@+id/titleField_c"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:hint="ShopName" />
+            android:hint="CropName " />
 
         <EditText
             android:layout_width="fill_parent"
@@ -47,12 +47,15 @@
             android:id="@+id/pro_c"
             android:layout_below="@+id/price_c"
             android:layout_centerHorizontal="true"
-            android:hint="phno" />
+            android:hint="phno"
+            android:inputType="phone" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#004D40"
             android:text="Submit"
+            android:textColor="#fff"
             android:id="@+id/submit_c"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />

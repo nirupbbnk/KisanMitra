@@ -6,52 +6,171 @@
     tools:context="pathrer.com.kisanmitra.SelectFragment">
 
     <!-- TODO: Update blank fragment layout -->
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Soil Test"
-        android:id="@+id/soiltest"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Crop"
-        android:id="@+id/crop"
-        android:layout_below="@+id/soiltest"
-        android:layout_alignLeft="@+id/soiltest"
-        android:layout_alignStart="@+id/soiltest"
-        android:layout_marginTop="52dp"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+            >
+            <!--    <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Soil Test"
+                    android:id="@+id/soiltest"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="57dp"
+                    style="@style/Widget.AppCompat.Button.Colored"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fertilizer"
-        android:id="@+id/fertilizer"
-        android:layout_below="@+id/crop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crop"
+                    android:id="@+id/crop"
+                    android:layout_below="@+id/soiltest"
+                    android:layout_alignLeft="@+id/soiltest"
+                    android:layout_alignStart="@+id/soiltest"
+                    android:layout_marginTop="52dp"
+                    style="@style/Widget.AppCompat.Button.Colored"/>
 
-    <Button
-        android:text="MyFrt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fertilizer"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:id="@+id/myfertpost"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fertilizer"
+                    android:id="@+id/fertilizer"
+                    android:layout_below="@+id/crop"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="55dp"
+                    style="@style/Widget.AppCompat.Button.Colored"/>
+
+                <Button
+                    android:text="MyFrt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fertilizer"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="45dp"
+                    android:id="@+id/myfertpost"
+                    style="@style/Widget.AppCompat.Button.Colored"/>-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="240.00dip"
+
+                android:id="@+id/soil_test">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/side_nav_bar"
+                    android:padding="10dp"
+                    android:layout_height="240.0dip"
+                    android:minHeight="190.0dip"
+                    android:layout_weight="1.0">
+                    <ImageView
+                        android:id="@+id/image_sel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/soiltest"
+                        android:scaleType="fitXY"
+                        />
+
+                    <TextView
+                        android:textSize="35.0sp"
+                        android:textColor="@android:color/white"
+                        android:id="@+id/list_item_google_cards_travel_category_name"
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="24dp"
+                        android:text="Soil Test"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="24dp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:id="@+id/crop_card"
+                android:layout_below="@+id/soil_test"
+                android:layout_height="240.00dip">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/side_nav_bar"
+                    android:padding="10dp"
+                    android:layout_height="240.0dip"
+                    android:minHeight="190.0dip"
+                    android:layout_weight="1.0">
+                    <ImageView
+                        android:id="@+id/image_Crop"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/cropimage"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/agri"
+                        android:layout_alignParentBottom="true" />
+                    <TextView
+                        android:textSize="35.0sp"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/list_item_google_cards_travel_category_name_crop"
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="24.0dip"
+                        android:layout_marginBottom="24.0dip"
+                        android:text="Crop"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:id="@+id/Fert_Card"
+                android:layout_below="@+id/crop_card"
+                android:layout_height="240.00dip">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:padding="10dp"
+                    android:background="@drawable/side_nav_bar"
+                    android:layout_height="240.0dip"
+                    android:minHeight="190.0dip"
+                    android:layout_weight="1.0">
+                    <ImageView
+                        android:id="@+id/image_fert"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/fertilizerimage"
+                        android:scaleType="fitXY"
+                        />
+                    <TextView
+                        android:textSize="35.0sp"
+                        android:textColor="@android:color/white"
+                        android:id="@+id/list_item_google_cards_travel_category_name_fert"
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="24.0dip"
+                        android:layout_marginBottom="24.0dip"
+                        android:text="Fertilizer"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
 
-</RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
 
 
     <!--       <android.support.v7.widget.CardView

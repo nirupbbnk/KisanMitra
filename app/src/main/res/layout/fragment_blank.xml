@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/b"
+    android:background="@drawable/side_nav_bar"
     tools:context="pathrer.com.kisanmitra.BlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,33 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.eazegraph.lib.charts.PieChart
-            android:id="@+id/piechart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:padding="8dp"
-            app:egLegendTextSize="25sp"
-            app:egLegendColor="@color/colorAccent"
-            app:egValueTextColor="@color/colorAccent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="28dp" />
 
-
-
-<!--
-        <Button
-            android:text="Intiate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/trt"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="62dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />-->
+        <!--
+                <Button
+                    android:text="Intiate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/trt"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="62dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />-->
 
         <TextView
             android:text="TextView"
@@ -53,18 +39,87 @@
             android:layout_marginStart="29dp"
             android:layout_marginBottom="16dp" />
 
+
+        <org.eazegraph.lib.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="8dp"
+            app:egLegendTextSize="25sp"
+            app:egLegendColor="@color/colorAccent"
+            app:egValueTextColor="@color/colorAccent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:id="@+id/card_blank"
+            android:layout_height="100dp"
+            android:layout_marginTop="27dp"
+            android:layout_below="@+id/fetch"
+            android:layout_centerHorizontal="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:padding="0dp"
+
+                android:background="@drawable/side_nav_bar"
+                android:layout_height="100dp"
+                android:minHeight="190.0dip"
+                android:layout_weight="1.0">
+
+                <TextView
+                    android:textSize="35.0sp"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/list_item_google_cards_travel_category_name_blank"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N:            P:              K:"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:textSize="20.0sp"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/crop_blank"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crop Predicted:"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
         <Button
             android:text="Intiate Test"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:id="@+id/fetch"
             android:textColor="@android:color/white"
-            android:background="@color/colorAccent"
-            android:layout_above="@+id/piechart1"
+            android:background="#004D40"
+            android:layout_below="@+id/piechart"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="show sugessted fertilizer"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+
+            android:textColor="@android:color/white"
+            android:background="#004D40"
+            android:layout_below="@+id/card_blank"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="19dp" />
-
-
+            android:layout_marginTop="31dp"
+            android:id="@+id/show_blank" />
     </RelativeLayout>
 
 

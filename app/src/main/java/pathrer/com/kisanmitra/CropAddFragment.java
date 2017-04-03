@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -69,7 +70,7 @@ public class CropAddFragment extends Fragment {
         mselectimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gallerintent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent gallerintent = new Intent(Intent.ACTION_PICK);
                 gallerintent.setType("image/*");
                 startActivityForResult(gallerintent,GALLERY_REQUEST);
             }
@@ -94,7 +95,7 @@ public class CropAddFragment extends Fragment {
                         newPost.child("place").setValue(desc_val);
                         newPost.child("price").setValue(price);
                         newPost.child("phno").setValue(ph);
-
+                        newPost.child("cuid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                         newPost.child("imageurl").setValue(downloaduri.toString());
 
 

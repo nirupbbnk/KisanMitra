@@ -1,6 +1,7 @@
 package pathrer.com.kisanmitra;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -39,7 +40,7 @@ public class BlankFragment extends Fragment {
     String msg = "70,30,50";
     static  String topicStr = "Muttu068@github/";
     Integer n,ph,k;
-    TextView p;
+    TextView p,cr;
     PieChart mPieChart;
     public BlankFragment() {
         // Required empty public constructor
@@ -62,8 +63,19 @@ public class BlankFragment extends Fragment {
 
         //Toast.makeText(getContext(),npk,Toast.LENGTH_LONG).show();
         //Button btn = (Button) view.findViewById(R.id.trt);
+        cr = (TextView)view.findViewById(R.id.crop_blank);
+        p = (TextView)view.findViewById(R.id.list_item_google_cards_travel_category_name_blank);
         Button btn1 = (Button)view.findViewById(R.id.fetch);
-        p = (TextView)view.findViewById(R.id.piechart1);
+        Button bt2 = (Button)view.findViewById(R.id.show_blank);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),Fertilizer.class);
+                startActivity(i);
+                Toast.makeText(getActivity(),"Suggested Fertilizers",Toast.LENGTH_LONG).show();
+            }
+        });
+       // p = (TextView)view.findViewById(R.id.piechart1);
         mPieChart = (PieChart)view.findViewById(R.id.piechart);
         String clientId = MqttClient.generateClientId();
         client = new MqttAndroidClient(getContext(),"tcp://iot.eclipse.org:1883",
@@ -115,15 +127,23 @@ public class BlankFragment extends Fragment {
                 //Toast.makeText(getApplicationContext(),"Subscribe intiated",Toast.LENGTH_SHORT).show();
 
                 t.start();
-                p.setText(msg);
+                String crop = "xyz";
                 String[] npks = msg.split(",");
-                String len = String.valueOf(npks.length);
-                int a[] = new int[3];
+                int len = npks.length;
+                int a[] = new int[4];
                 int i=0;
                 for(String s: npks){
+                    crop = s;
                     Log.d("npks:",s);
-                    a[i++] = Integer.parseInt(s);
-                    Log.d("npki:",String.valueOf(a[i-1]));
+                    Log.d("npk1i:",String.valueOf(i));
+                    if(i < 3){
+                        a[i++] = Integer.parseInt(s);
+
+                        Log.d("npki:",String.valueOf(a[i-1]));
+
+                    }
+
+
                 }
 
                 //List<String> npks = Arrays.asList(msg.split(","));
@@ -134,10 +154,19 @@ public class BlankFragment extends Fragment {
                 mPieChart.addPieSlice(new PieModel("NITROGEN", a[0], Color.parseColor("#FE6DA8")));
                 mPieChart.addPieSlice(new PieModel("POTASSIUM", a[1], Color.parseColor("#56B7F1")));
                 mPieChart.addPieSlice(new PieModel("PHOSPHOROUS",a[2], Color.parseColor("#CDA67F")));
-
+                p.setText("N:"+ String.valueOf(a[0])+"      +P:"+String.valueOf(a[1])+"     K:"+String.valueOf(a[2]));
 
 
                 mPieChart.startAnimation();
+                cr.setText("Crop suggested: "+ crop);
+               /* if(i==4 ){
+                    cr.setText("Crop suggested: "+ npks[3]);
+
+
+                }else{
+                    cr.setText("Crop suggested: "+ "Rice");
+                }
+*/
                 //sub(v);
             }
         });
