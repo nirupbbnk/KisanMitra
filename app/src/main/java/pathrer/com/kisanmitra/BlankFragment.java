@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,8 +71,13 @@ public class BlankFragment extends Fragment {
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),Fertilizer.class);
-                startActivity(i);
+                FertilizerFragment fp = new FertilizerFragment();
+                FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.frame,fp,"fragmentferti");
+                fragmentTransaction2.addToBackStack("fragmentferti");
+                fragmentTransaction2.commit();
+                /*Intent i = new Intent(getActivity(),Fertilizer.class);
+                startActivity(i);*/
                 Toast.makeText(getActivity(),"Suggested Fertilizers",Toast.LENGTH_LONG).show();
             }
         });

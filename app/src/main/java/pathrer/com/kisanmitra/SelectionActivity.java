@@ -147,7 +147,7 @@ public class SelectionActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         if(doubleBack){
             super.onBackPressed();
@@ -162,5 +162,5 @@ public class SelectionActivity extends AppCompatActivity implements NavigationVi
                 doubleBack=false;
             }
         },2000);
-    }
+    }*/
 }

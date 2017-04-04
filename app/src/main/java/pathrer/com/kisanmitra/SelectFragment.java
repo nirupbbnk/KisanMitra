@@ -88,6 +88,7 @@ public class SelectFragment extends Fragment {
                 BlankFragment cp = new BlankFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame,cp,"fragment");
+                fragmentTransaction.addToBackStack("fragment");
                 fragmentTransaction.commit();
 
             }
@@ -98,14 +99,20 @@ public class SelectFragment extends Fragment {
                 CropFragment bp = new CropFragment();
                 FragmentTransaction fragmentTransaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction1.replace(R.id.frame,bp,"fragment");
+                fragmentTransaction1.addToBackStack("fragment");
                 fragmentTransaction1.commit();
             }
         });
         ferti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Fertilizer.class));
-                getActivity().finish();
+                FertilizerFragment fp = new FertilizerFragment();
+                FragmentTransaction fragmentTransaction2 = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.frame,fp,"fragmentferti");
+                fragmentTransaction2.addToBackStack("fragmentferti");
+                fragmentTransaction2.commit();
+                /*startActivity(new Intent(getActivity(), Fertilizer.class));
+                getActivity().finish();*/
             }
         });
        /* mRecyclerView = (RecyclerView) rootView.findViewById(R.id.sel_rec);

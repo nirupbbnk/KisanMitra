@@ -52,8 +52,8 @@ public String phone;
         editor=sharedPreferences.edit();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         DigitsAuthButton digitsButton = (DigitsAuthButton) findViewById(R.id.auth_button);
-        Button scan = (Button)findViewById(R.id.adhar_scan);
-
+        final Button scan = (Button)findViewById(R.id.adhar_scan);
+        scan.setEnabled(false);
         digitsButton.setCallback(new AuthCallback() {
             @Override
             public void success(DigitsSession session, String phoneNumber) {
@@ -61,7 +61,7 @@ public String phone;
                 Toast.makeText(getApplicationContext(), "Authentication successful for "
                         + phoneNumber, Toast.LENGTH_LONG).show();
                 phone = phoneNumber;
-
+                scan.setEnabled(true);
             }
 
             @Override
@@ -100,6 +100,7 @@ public String phone;
                 newPost.child("dist").setValue(district);
                 newPost.child("Fuid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                 Intent i = new Intent(Register.this,SelectionActivity.class);
+
                 Bundle b=new Bundle();
                 /*b.putString("uid",uid);
                 b.putString("phone",phone);

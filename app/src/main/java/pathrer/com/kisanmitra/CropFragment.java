@@ -112,6 +112,9 @@ public class CropFragment extends Fragment {
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
+
+
+
     public static class CropVIewHolder extends RecyclerView.ViewHolder{
         View mview;
         Context context;
