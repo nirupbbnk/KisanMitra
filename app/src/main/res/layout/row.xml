@@ -18,35 +18,105 @@
             android:src="@mipmap/add_btn"
             android:scaleType="fitStart"
             android:adjustViewBounds="true" />
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/posttitle"
-            android:text="Title"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="15dp" />
-        <TextView
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NPK value :      "
+                android:padding="10dp"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/npkvalue"
+                android:text="Desc"
+                android:padding="10dp"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Shop Name :   "
+               android:padding="10dp"
+               android:textSize="16dp" />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/posttitle"
+               android:text="Title"
+               android:padding="10dp" />
+       </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/posttext"
-            android:text="Desc"
-            android:padding="10dp"
-            android:textSize="16dp" />
-        <TextView
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price(₹/50kg) :"
+                android:padding="10dp"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/posttext"
+                android:text="Desc"
+                android:padding="10dp"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/postphoneno"
-            android:text="Desc"
-            android:padding="10dp"
-            android:textSize="16dp" />
-        <TextView
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Place :              "
+                android:padding="10dp"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/postphoneno"
+                android:text="Desc"
+                android:padding="10dp"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/postplace"
-            android:text="Desc"
-            android:padding="10dp"
-            android:textSize="16dp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone :             "
+                android:padding="10dp"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/postplace"
+                android:text="Desc"
+                android:padding="10dp"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+
+
+
+
 
     </LinearLayout>
 

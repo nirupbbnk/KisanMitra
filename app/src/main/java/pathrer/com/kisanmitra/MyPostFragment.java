@@ -77,7 +77,7 @@ public class MyPostFragment extends Fragment {
         // Inflate the layout for this fragment
 
         //mypo = savedInstanceState.getString("Vuc");
-        mdatabase = FirebaseDatabase.getInstance().getReference().child("Fertilizer1");
+        mdatabase = FirebaseDatabase.getInstance().getReference().child("Fertilizer");
         String usr = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         query = mdatabase.orderByChild("usrid").equalTo(usr);
         View rootView = inflater.inflate(R.layout.fragment_my_post, container, false);
@@ -103,7 +103,7 @@ public class MyPostFragment extends Fragment {
         super.onStart();
         FirebaseRecyclerAdapter<Blog,MyFerViewholder> firebaseRecyclerAdapterMyFert = new FirebaseRecyclerAdapter<Blog, MyFerViewholder>(
                 Blog.class,
-                R.layout.row,
+                R.layout.rowpost,
                 MyFerViewholder.class,
                 query
         ) {
@@ -111,10 +111,10 @@ public class MyPostFragment extends Fragment {
             protected void populateViewHolder(MyFerViewholder viewHolder, Blog model, int position) {
                 mypo = model.getUsrid();
                 final String post_key = getRef(position).getKey();
-                viewHolder.setTitle(model.getTitle());
+                //viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
-                viewHolder.setPhno(model.getPhno());
-                viewHolder.setPlace(model.getPlace());
+                viewHolder.setNpkval(model.getNpkval());
+                //viewHolder.setPlace(model.getPlace());
                 viewHolder.setImage(getContext(),model.getImage());
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
@@ -195,29 +195,23 @@ public class MyPostFragment extends Fragment {
             super(itemView);
             mView = itemView;
         }
-        public  void setTitle(String title){
-            TextView posttitle= (TextView) mView.findViewById(R.id.posttitle);
-            posttitle.setText(title);
-        }
+
 
         public  void setDesc(String title){
-            TextView postdesc= (TextView) mView.findViewById(R.id.posttext);
+            TextView postdesc= (TextView) mView.findViewById(R.id.posttext2);
             postdesc.setText(title);
         }
 
         public void setImage(Context ctx,String image){
-            ImageView postimg = (ImageView) mView.findViewById(R.id.postimage);
+            ImageView postimg = (ImageView) mView.findViewById(R.id.imageView2);
             Picasso.with(ctx).load(image).into(postimg);
         }
 
-        public void setPhno(String title) {
-            phno = title;
-            TextView postdesc= (TextView) mView.findViewById(R.id.postphoneno);
+        public void setNpkval(String title) {
+
+            TextView postdesc= (TextView) mView.findViewById(R.id.npkvalue1);
             postdesc.setText(title);
         }
-        public void setPlace(String title) {
-            TextView postdesc= (TextView) mView.findViewById(R.id.postplace);
-            postdesc.setText(title);
-        }
+
     }
 }

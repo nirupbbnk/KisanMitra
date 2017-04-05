@@ -5,7 +5,22 @@ package pathrer.com.kisanmitra;
  */
 public class Blog {
 
-    private String title,desc,image,phno,place,usrid;
+    private String title;
+    private String desc;
+    private String image;
+    private String phno;
+    private String place;
+    private String usrid;
+
+    public String getNpkval() {
+        return npkval;
+    }
+
+    public void setNpkval(String npkval) {
+        this.npkval = npkval;
+    }
+
+    private String npkval;
 
     public Blog(){
 
@@ -27,13 +42,14 @@ public class Blog {
         this.place = place;
     }
 
-    public Blog(String title, String desc, String image, String phno, String place,String usrid) {
+    public Blog(String title, String desc, String image, String phno, String place,String usrid ,String npkval) {
         this.title = title;
         this.desc = desc;
         this.image = image;
         this.phno = phno;
         this.place = place;
         this.usrid = usrid;
+        this.npkval = npkval;
     }
 
     public String getDesc() {
