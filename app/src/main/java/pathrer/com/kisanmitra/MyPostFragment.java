@@ -1,10 +1,12 @@
 package pathrer.com.kisanmitra;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -108,11 +110,42 @@ public class MyPostFragment extends Fragment {
             @Override
             protected void populateViewHolder(MyFerViewholder viewHolder, Blog model, int position) {
                 mypo = model.getUsrid();
+                final String post_key = getRef(position).getKey();
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setPhno(model.getPhno());
                 viewHolder.setPlace(model.getPlace());
                 viewHolder.setImage(getContext(),model.getImage());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                        builder1.setMessage("Are you sure want to delete?");
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Yes",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        mdatabase.child(post_key).removeValue();
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                "No",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+                });
                /* if(mypo.equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())){
 
                 } else{

@@ -13,15 +13,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.Map;
 
 
 /**
@@ -30,7 +37,7 @@ import com.google.firebase.storage.UploadTask;
 public class CropAddFragment extends Fragment {
 
     private ImageButton mselectimage;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase,getmDatabase;
     private StorageReference mStorage;
     private EditText mtitle;
     private EditText mpost;
@@ -38,7 +45,7 @@ public class CropAddFragment extends Fragment {
     private EditText mphmo;
     private Button msubitb;
     private Uri imageuri = null;
-
+    private Query query;
     private static final int GALLERY_REQUEST = 1;
     public CropAddFragment() {
         // Required empty public constructor
@@ -58,7 +65,8 @@ public class CropAddFragment extends Fragment {
         mStorage = FirebaseStorage.getInstance().getReference();
         // mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("CropsP");
-
+        getmDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        query = getmDatabase.orderByChild("Fuid").equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
         mselectimage = (ImageButton) view.findViewById(R.id.imageSelect_c);
         mtitle = (EditText)view. findViewById(R.id.titleField_c);
         mpost = (EditText) view.findViewById(R.id.descField_c);
@@ -66,7 +74,36 @@ public class CropAddFragment extends Fragment {
         mphmo = (EditText)view. findViewById(R.id.pro_c);
         msubitb =(Button) view.findViewById(R.id.submit_c);
 
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map<String, Object> newPost = (Map<String, Object>) dataSnapshot.getValue();
+                mphmo.setText(newPost.get("phone").toString(), TextView.BufferType.EDITABLE);
+                mpost.setText(newPost.get("dist").toString(), TextView.BufferType.EDITABLE);
+                System.out.println("phone: " + newPost.get("phone"));
+                System.out.println("place: " + newPost.get("dist"));
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mselectimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
